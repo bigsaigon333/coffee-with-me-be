@@ -26,4 +26,17 @@ router
     res.status(201).json(newReservation);
   });
 
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+
+  const found = reservations.find((reservation) => reservation.id === id);
+
+  if (!found) {
+    res.sendStatus(404);
+    return;
+  }
+
+  res.status(200).json(found);
+});
+
 export default router;
